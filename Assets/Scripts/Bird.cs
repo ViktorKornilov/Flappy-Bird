@@ -7,13 +7,16 @@ public class Bird : MonoBehaviour
     public float rotatePower;
     public float jumpSpeed;
     public TMP_Text scoreText;
+    public GameObject endScreen;
 
+    public float speed;
     int score;
     Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Pipe.speed = speed;
     }
 
     void Update()
@@ -29,8 +32,21 @@ public class Bird : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        var currentScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentScene);
+        Die();
+    }
+
+
+    void Die()
+    {
+        Pipe.speed = 0;
+        jumpSpeed = 0;
+        Invoke("ShowMenu",1f);
+    }
+
+    void ShowMenu()
+    {
+        endScreen.SetActive(true);
+        scoreText.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
