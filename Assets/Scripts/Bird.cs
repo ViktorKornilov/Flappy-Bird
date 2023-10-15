@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,9 @@ public class Bird : MonoBehaviour
 {
     public float rotatePower;
     public float jumpSpeed;
+    public TMP_Text scoreText;
+
+    int score;
     Rigidbody2D rb;
 
     void Start()
@@ -31,9 +35,7 @@ public class Bird : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // add score
-        // TMP Text to show score
-        // Get score Sound
-        // Create Github repo and post SCRIPT!!! link to discord
+        score++;
+        scoreText.text = score.ToString();
     }
 }
