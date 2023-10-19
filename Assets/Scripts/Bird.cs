@@ -8,6 +8,7 @@ public class Bird : MonoBehaviour
     public float jumpSpeed;
     public TMP_Text scoreText;
     public GameObject endScreen;
+    public GameObject flashEffect;
 
     public float speed;
     int score;
@@ -40,6 +41,9 @@ public class Bird : MonoBehaviour
     {
         Pipe.speed = 0;
         jumpSpeed = 0;
+        PlayerPrefs.SetInt("Score",score);
+        flashEffect.SetActive(true);
+
         Invoke("ShowMenu",1f);
     }
 
